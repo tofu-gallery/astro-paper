@@ -1,8 +1,15 @@
+// Tofu adaptation: use this copy's address for canonical links, RSS, and sitemaps.
 import { defineAstroPaperConfig } from "./src/types/config";
+
+const deploymentHost =
+  process.env.VERCEL_PROJECT_PRODUCTION_URL || process.env.VERCEL_URL;
+const siteUrl =
+  process.env.PUBLIC_SITE_URL ||
+  (deploymentHost ? `https://${deploymentHost}` : "http://localhost:4321/");
 
 export default defineAstroPaperConfig({
   site: {
-    url: "https://astro-paper.pages.dev/",
+    url: siteUrl,
     title: "AstroPaper",
     description: "A minimal, responsive and SEO-friendly Astro blog theme.",
     author: "Sat Naing",
