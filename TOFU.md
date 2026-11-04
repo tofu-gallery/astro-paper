@@ -6,7 +6,7 @@ AstroPaper is Sat Naing's minimal, responsive Astro blog theme. It includes Mark
 
 - **Tofu framework preset:** `astro`.
 - **Repository / project root:** `/` (this directory).
-- **Runtime for the build:** Node.js `>=22.12.0` as declared upstream.
+- **Runtime for the build:** Node.js `>=22.23.4` as declared upstream. Upstream raised it from `>=22.12.0` in AstroPaper v7.0.0 because Astro 7.4 needs it.
 - **Package manager:** pnpm 11.3.0, pinned in `package.json` to match upstream CI, using the existing `pnpm-lock.yaml` and `pnpm-workspace.yaml`. This version supports the workspace's `allowBuilds` setting; deployment must not silently select an older pnpm that ignores it.
 - **Install:** `pnpm install --frozen-lockfile`.
 - **Build:** `pnpm run build` (Astro type checking and build, then Pagefind indexing).
@@ -41,6 +41,7 @@ No analytics or advertising scripts were found in the app source. Astro download
 - Upstream: https://github.com/satnaing/astro-paper
 - Upstream branch: `main`
 - Base upstream commit: `35cfa7fbe0b897306d27670d3819e55d5205f3dd`
+- Last upstream merge: `befb05d9d5f359497a1cb4146f5c37fab22f7678` (AstroPaper v7.0.0 with Astro 7.4.2), merged into `tofu` on 2026-11-04.
 - Gallery fork: https://github.com/tofu-gallery/astro-paper
 - Adaptations live on `tofu`; `main` is kept as the upstream mirror.
 - Licence: MIT, Copyright (c) 2023 Sat Naing, as written in the unchanged `LICENSE`.
@@ -60,3 +61,5 @@ pnpm exec eslint astro-paper.config.ts
 The frozen install passed. The complete build passed: Astro checked 55 files with zero errors, warnings, or hints, built 45 pages, and Pagefind indexed 17 pages. The built homepage returned HTTP 200 with the AstroPaper title; `/search/`, `/pagefind/pagefind.js`, `/rss.xml`, and `/posts/adding-new-posts-in-astropaper-theme/` also returned 200. The preview was stopped after verification. ESLint passed for the changed configuration.
 
 Generated homepage canonical links, RSS, sitemap, and robots metadata were checked against the configured `PUBLIC_SITE_URL`. The homepage's font URLs resolve locally, with 20 font files in `dist/_astro/fonts/`, and its external script URL is local to the site. The upstream lockfile, licence, and favicon were compared to the base commit and remain unchanged. This is local build and HTTP verification; no hosted deployment or interactive browser QA was performed.
+
+The verification above covers the base upstream commit. The upstream changes merged on 2026-11-04 have not been built yet. Rebuilding needs Node.js 22.23.4 or newer, since the Node.js 22.22.3 used above is now below upstream's `engines.node`. On 2026-11-04, the lockfile was identical to upstream's, and `package.json` differed from upstream's only in the `packageManager` pin.
